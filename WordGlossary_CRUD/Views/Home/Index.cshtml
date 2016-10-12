@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-controller="GlossaryCRUDCtrl">
+    <div class="divList">
+        <p><b><i>Glossary List</i></b></p>
+        <table class="table table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Term</b></td>
+                <td><b>Definition</b></td>
+                <td><b>Action</b></td>
+            </tr>
+            <tr ng-repeat="glossary in glossaries">
+                <td>
+                    {{glossary.Id}}
+                </td>
+                <td>
+                    {{glossary.Term}}
+                </td>
+                <td width="800">
+                    {{glossary.Definition}}
+                </td>
+                <td>
+                    <span ng-click="editglossary(glossary)" class="btn btn-primary">Edit</span>
+                    <span ng-click="deleteglossary(glossary)" class="btn btn-danger">Delete</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span ng-click="AddglossaryDiv()" class="btn btn-default">
+        Add Glossary
+    </span>
+    <div ng-show="divGlossary">
+        <p class="divHead"></p>
+        <table class="table">
+            <tr>
+                <td><b><i>{{Action}} Glossary</i></b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Id</b></td>
+                <td>
+                    <input type="text" disabled="disabled" ng-model="glossaryId"  />
+                </td>
+                <td><b>Term</b></td>
+                <td>
+                    <input type="text" ng-model="glossaryTerm" />
+                </td>
+            </tr>
+            <tr>
+                <td><b>Definition</b></td>
+                <td colspan="3">
+                    <textarea ng-model="glossaryDefinition" cols="100" rows="8" ></textarea>                    
+                </td>                
+            </tr> 
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" class="btn btn-default" value="Save" ng-click="AddUpdateGlossary()" />
+                    <input type="button" class="btn btn-danger" value="Cancel" ng-click="Cancel()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
